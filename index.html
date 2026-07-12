@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FNaF Megacomplex</title>
+
+    <!-- UI Styles -->
+    <link rel="stylesheet" href="css/ui.css" />
+
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128/examples/js/loaders/GLTFLoader.js"></script>
+</head>
+
+<body>
+
+    <!-- GAME CANVAS -->
+    <canvas id="gameCanvas"></canvas>
+
+    <!-- MAIN MENU -->
+    <div id="mainMenu" class="menu">
+        <h1 class="title">FNaF Megacomplex</h1>
+
+        <button class="menuBtn" onclick="startGame()">Start Game</button>
+        <button class="menuBtn" onclick="continueGame()">Continue</button>
+        <button class="menuBtn" onclick="openNightSelect()">Night Select</button>
+        <button class="menuBtn" onclick="openExtras()">Extras</button>
+        <button class="menuBtn" onclick="openSettings()">Settings</button>
+        <button class="menuBtn" onclick="openCredits()">Credits</button>
+        <button class="menuBtn" onclick="quitGame()">Quit</button>
+    </div>
+
+    <!-- NIGHT SELECT -->
+    <div id="nightSelectMenu" class="menu hidden">
+        <h2>Select Night</h2>
+        <button class="menuBtn" onclick="loadNight(1)">Night 1</button>
+        <button class="menuBtn" onclick="loadNight(2)">Night 2</button>
+        <button class="menuBtn" onclick="loadNight(3)">Night 3</button>
+        <button class="menuBtn" onclick="loadNight(4)">Night 4</button>
+        <button class="menuBtn" onclick="loadNight(5)">Night 5</button>
+        <button class="menuBtn" onclick="loadCustomNight()">Custom Night</button>
+        <button class="menuBtn" onclick="returnToMenu()">Back</button>
+    </div>
+
+    <!-- SETTINGS MENU -->
+    <div id="settingsMenu" class="menu hidden">
+        <h2>Settings</h2>
+
+        <div class="settingGroup">
+            <label>Graphics Quality</label>
+            <select id="graphicsQuality" onchange="applyGraphics()">
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+                <option value="ultra">Ultra</option>
+            </select>
+        </div>
+
+        <div class="settingGroup">
+            <label>Shadow Quality</label>
+            <select id="shadowQuality" onchange="applyGraphics()">
+                <option value="off">Off</option>
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+            </select>
+        </div>
+
+        <div class="settingGroup">
+            <label>Master Volume</label>
+            <input type="range" id="masterVolume" min="0" max="100" value="80" onchange="applyAudio()" />
+        </div>
+
+        <div class="settingGroup">
+            <label>Mouse Sensitivity</label>
+            <input type="range" id="mouseSensitivity" min="1" max="10" value="5" onchange="applyControls()" />
+        </div>
+
+        <button class="menuBtn" onclick="returnToMenu()">Back</button>
+    </div>
+
+    <!-- EXTRAS MENU -->
+    <div id="extrasMenu" class="menu hidden">
+        <h2>Extras</h2>
+        <button class="menuBtn" onclick="openAnimatronicViewer()">Animatronic Viewer</button>
+        <button class="menuBtn" onclick="openJumpscareGallery()">Jumpscare Gallery</button>
+        <button class="menuBtn" onclick="openBehindScenes()">Behind the Scenes</button>
+        <button class="menuBtn" onclick="openSoundTest()">Sound Test</button>
+        <button class="menuBtn" onclick="openAchievements()">Achievements</button>
+        <button class="menuBtn" onclick="returnToMenu()">Back</button>
+    </div>
+
+    <!-- DEATH SCREEN -->
+    <div id="deathScreen" class="menu hidden">
+        <h1 class="deathTitle">YOU DIED</h1>
+        <p id="deathCause">Killed by Freddy</p>
+        <p id="deathTime">Survived: 3:42 AM</p>
+
+        <button class="menuBtn" onclick="retryNight()">Retry</button>
+        <button class="menuBtn" onclick="returnToMenu()">Menu</button>
+        <button class="menuBtn" onclick="quitGame()">Quit</button>
+    </div>
+
+    <!-- HUD -->
+    <div id="hud" class="hidden">
+        <div id="powerDisplay">Power: 100%</div>
+        <div id="timeDisplay">12:00 AM</div>
+        <div id="flashlightDisplay">Flashlight: 100%</div>
+    </div>
+
+    <!-- GAME SCRIPTS -->
+    <script src="game.js"></script>
+    <script src="ui.js"></script>
+
+    <!-- MENU SCRIPTS -->
+    <script src="menu/mainMenu.js"></script>
+    <script src="menu/settingsMenu.js"></script>
+    <script src="menu/nightSelect.js"></script>
+    <script src="menu/extrasMenu.js"></script>
+    <script src="menu/deathScreen.js"></script>
+
+    <!-- AI SCRIPTS -->
+    <script src="ai/freddyAI.js"></script>
+    <script src="ai/bonnieAI.js"></script>
+    <script src="ai/chicaAI.js"></script>
+    <script src="ai/foxyAI.js"></script>
+
+</body>
+</html>
